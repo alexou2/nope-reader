@@ -1,0 +1,64 @@
+body {
+  background-size: auto;
+  border:none;
+  background:url(background-black.png)!important;
+  text-align: center;
+}
+h1 {
+  color: rgb(206, 206, 206);
+  text-align: center;
+}
+.p-chap {
+  float: left;
+  color: #fff;
+  font-size: 15px;
+  line-height: 27px;
+  background: #27ae60;
+  cursor: pointer;
+  padding: 0 10px;
+  margin: 10px 5px 0 0;
+  text-align: center;
+}
+.n-chap {
+  float: left;
+  color: #fff;
+  font-size: 15px;
+  line-height: 27px;
+  background: #27ae60;
+  cursor: pointer;
+  padding: 0 10px;
+  margin: 10px 5px 0 0;
+  text-align: center;
+}
+
+  .chapters img{
+    display: block;
+    margin: 5px auto 0;
+      margin-top: 5px;
+    max-width: 100%;
+    height: auto;
+  }
+  img{
+    display:block;
+  }
+  .change-chapter{
+    margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+vertical-align: baseline;
+font-weight: 400;
+text-align: center;
+width: calc(100% - 20px);
+margin: 0 auto;
+padding: 0 10px 10px;
+overflow: hidden;
+background: #000;
+  }
+  .logo img{
+    display: block;
+    width: 25em;
+    height: auto;
+    margin-left: auto;
+  margin-right: auto;
+  }
