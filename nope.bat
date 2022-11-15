@@ -1,0 +1,2 @@
+java .\src\Main.java
+
