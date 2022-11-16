@@ -54,7 +54,9 @@ public class Main {
                 }
                 //filters html files
                 List<String> htmlFiles = htmlList.stream()
-                        .filter((String s) -> s.endsWith(".html")).collect(Collectors.toList());
+//                        .filter((String s) -> s.endsWith(".html")).collect(Collectors.toList());
+                .filter((String s) -> s.contains(".ht")).collect(Collectors.toList());
+
                 int number = htmlFiles.size();
 
                 //asks for permission before deleting files
