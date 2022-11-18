@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/manga_reader.iml" filepath="$PROJECT_DIR$/manga_reader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nope-reader.iml" filepath="$PROJECT_DIR$/nope-reader.iml" />
     </modules>
   </component>
 </project>

@@ -127,12 +127,15 @@ public class Main {
             bw.write(htmlHeader);
 //            bw.write("<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>");
             bw.write("<h1>" + chapterList.get(i - 1) + "</h1</br>\n");
+
+
             if (i > 1) {
                 bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\"><i></i>◄◄ Previous Chapter </a></p-chap>\n");
             }
             if (i < chNumber) {
                 bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\"><i></i> Next Chapter ►►</a><br/></n-chap>\n");
             }
+
 
             bw.write("<div class=\"chapters\">\n");
 
