@@ -23,8 +23,7 @@ public class Main {
                 + "<html lang=\"en\">\n"
                 + "<head>\n"
                 + "<link rel=\"stylesheet\" href =\"../../ressources/manga.css\"/>\n"
-                + "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\n"
-                + "        integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\"\n>"
+                + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
                 + "<link rel=\"icon\" href=\"../../ressources/logo.png\" type=\"image/x-icon\" />\n"
                 + "<meta charset=\"UTF-8\">\n"
                 + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
@@ -57,7 +56,6 @@ public class Main {
         }
         //filters html files
         List<String> htmlFiles = htmlList.stream()
-//                        .filter((String s) -> s.endsWith(".html")).collect(Collectors.toList());
                 .filter((String s) -> s.contains(".ht")).collect(Collectors.toList());
 
         int number = htmlFiles.size();
@@ -90,7 +88,8 @@ public class Main {
 
             }
         }
-
+        String prevChap = null;
+        String nextChap = null;
 
 //lists chapter folders
         for (File f : actual.listFiles()) {
@@ -109,14 +108,17 @@ public class Main {
 
 
             //variables for the link to the previous/next page
-//            try {
-//                String prevChap = "";
-//            } catch (Exception e) System.out.print("");
-//            try{
-//                String nextChap = ;
-//            }catch(Exception e){
-//
-//            }
+
+            try{
+                nextChap = "<p><a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
+                        "                        href=\"" + chapterList.get(i) + ".html" + "\">Next Chapter ►►</a></p>\n";
+            }catch(Exception e){}
+
+            try {
+                prevChap = "<p><a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
+                        "                        href=\"" + chapterList.get(i - 2) + ".html" + "\">◄◄ Previous Chapter </a></p>\n";
+            } catch (Exception e){}
+
 
 //writing to html
             //BufferedWriter bw = null;
@@ -126,16 +128,16 @@ public class Main {
 //starting to write html file
             bw.write(htmlHeader);
 //            bw.write("<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>");
-            bw.write("<h1>" + chapterList.get(i - 1) + "</h1</br>\n");
+            bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
+
+            if (i < chNumber) {
+                bw.write(nextChap);
+            }
 
             if (i > 1) {
-                bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\">◄◄ Previous Chapter </a></p-chap>\n");
+                bw.write(prevChap);
             }
-            if (i < chNumber) {
-                bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\">Next Chapter ►►</a><br/></n-chap>\n");
-            }
-
 
             bw.write("<div class=\"chapters\">\n");
 
@@ -161,14 +163,17 @@ public class Main {
 //adding images to html
                 bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pages.get(a - 1) + "\">\n");
             }
-            bw.write("</div>\n<div class=\"change-chapter\">\n<p>");
+//            bw.write("</div>\n<div class=\"change-chapter\">\n<p>");
 //next/previous chapter
-            if (i > 1) {
-                bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\">◄◄ Previous Chapter </a></p-chap>\n");
-            }
+
             if (i < chNumber) {
-                bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\">Next Chapter ►►</a></n-chap>\n");
+                bw.write(nextChap);
             }
+
+            if (i > 1) {
+                bw.write(prevChap);
+            }
+
             System.out.println(pages);
             System.out.println("chapter finished");
             bw.write("</p></div>\n" + htmlEnd);
