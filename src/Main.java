@@ -130,10 +130,10 @@ public class Main {
 
 
             if (i > 1) {
-                bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\"><i></i>◄◄ Previous Chapter </a></p-chap>\n");
+                bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\">◄◄ Previous Chapter </a></p-chap>\n");
             }
             if (i < chNumber) {
-                bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\"><i></i> Next Chapter ►►</a><br/></n-chap>\n");
+                bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\">Next Chapter ►►</a><br/></n-chap>\n");
             }
 
 
@@ -161,17 +161,17 @@ public class Main {
 //adding images to html
                 bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pages.get(a - 1) + "\">\n");
             }
-            bw.write("</div>\n<div class=\"change-chapter\">\n");
+            bw.write("</div>\n<div class=\"change-chapter\">\n<p>");
 //next/previous chapter
             if (i > 1) {
-                bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\"><i></i>◄◄ Previous Chapter </a></p-chap>\n");
+                bw.write("<a class=\"p-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i - 2) + ".html" + "\">◄◄ Previous Chapter </a></p-chap>\n");
             }
             if (i < chNumber) {
-                bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\"><i></i> Next Chapter ►►</a><br/></n-chap>\n");
+                bw.write("<a class=\"n-chap\" rel=\"nofollow\" href = \"" + chapterList.get(i) + ".html" + "\">Next Chapter ►►</a></n-chap>\n");
             }
             System.out.println(pages);
             System.out.println("chapter finished");
-            bw.write("</div>\n" + htmlEnd);
+            bw.write("</p></div>\n" + htmlEnd);
             bw.close();
             pageList.removeAll(pageList);
         }
