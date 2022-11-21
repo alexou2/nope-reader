@@ -108,16 +108,15 @@ public class Main {
 
 
             //variables for the link to the previous/next page
+            try {
+                prevChap = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
+                        "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+            } catch (Exception e){}
 
             try{
-                nextChap = "<p><a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
-                        "                        href=\"" + chapterList.get(i) + ".html" + "\">Next Chapter ►►</a></p>\n";
+                nextChap = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
+                        "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
             }catch(Exception e){}
-
-            try {
-                prevChap = "<p><a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
-                        "                        href=\"" + chapterList.get(i - 2) + ".html" + "\">◄◄ Previous Chapter </a></p>\n";
-            } catch (Exception e){}
 
 
 //writing to html
@@ -130,14 +129,18 @@ public class Main {
 //            bw.write("<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>");
             bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
-
-            if (i < chNumber) {
-                bw.write(nextChap);
-            }
+            bw.write("<div class=\"top-buttons\">\n" +
+                    "        <p> ");
 
             if (i > 1) {
                 bw.write(prevChap);
             }
+            if (i < chNumber) {
+                bw.write(nextChap);
+            }
+            bw.write("</p>\n" +
+                    "    </div>");
+
 
             bw.write("<div class=\"chapters\">\n");
 
@@ -163,16 +166,20 @@ public class Main {
 //adding images to html
                 bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pages.get(a - 1) + "\">\n");
             }
-//            bw.write("</div>\n<div class=\"change-chapter\">\n<p>");
 //next/previous chapter
+
+            bw.write("</div>\n" +
+                    "    <div class=\"nextChap\">\n" +
+                    "        <p>");
 
             if (i < chNumber) {
                 bw.write(nextChap);
             }
 
             if (i > 1) {
-                bw.write(prevChap);
+                bw.write("<p>" + prevChap + "</p>");
             }
+
 
             System.out.println(pages);
             System.out.println("chapter finished");
