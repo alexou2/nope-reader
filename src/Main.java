@@ -88,8 +88,10 @@ public class Main {
 
             }
         }
-        String prevChap = null;
-        String nextChap = null;
+        String prevChapTop = null;
+        String nextChapTop = null;
+        String prevChapBottom= null;
+        String nextChapBottom= null;
 
 //lists chapter folders
         for (File f : actual.listFiles()) {
@@ -109,15 +111,27 @@ public class Main {
 
             //variables for the link to the previous/next page
             try {
-                prevChap = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
+                prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
                         "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
-            } catch (Exception e){}
+            } catch (Exception e) {
+            }
 
-            try{
-                nextChap = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
+            try {
+                nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
                         "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
-            }catch(Exception e){}
+            } catch (Exception e) {
+            }
 
+            try {
+                nextChapBottom= "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
+                        "                href=\""+chapterList.get(i)+".html\">Next Chapter ►►</a>\n";
+            }catch (Exception e){}
+
+
+            try {
+                prevChapBottom= "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
+                        "            href=\""+chapterList.get(i-2)+".html\">◄◄ Previous Chapter </a>\n";
+            }catch (Exception e){}
 
 //writing to html
             //BufferedWriter bw = null;
@@ -133,10 +147,10 @@ public class Main {
                     "        <p> ");
 
             if (i > 1) {
-                bw.write(prevChap);
+                bw.write(prevChapTop);
             }
             if (i < chNumber) {
-                bw.write(nextChap);
+                bw.write(nextChapTop);
             }
             bw.write("</p>\n" +
                     "    </div>");
@@ -173,11 +187,11 @@ public class Main {
                     "        <p>");
 
             if (i < chNumber) {
-                bw.write(nextChap);
+                bw.write(nextChapBottom);
             }
 
             if (i > 1) {
-                bw.write("<p>" + prevChap + "</p>");
+                bw.write("<p>" + prevChapBottom + "</p>");
             }
 
 
