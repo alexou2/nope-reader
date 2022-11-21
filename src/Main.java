@@ -16,6 +16,15 @@ public class Main {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         System.out.println("os name = " + System.getProperty("os.name"));
 
+        //lists mangas
+        File mangaAvailable = new File("manga" + File.separator);
+        System.out.print("**************************\n"+
+                "the mangas available are:\n");
+        for (File available : mangaAvailable.listFiles()) {
+            System.out.print(available.getName()+"\n");
+        }
+        System.out.print("**************************\n");
+
         Scanner scan = new Scanner(System.in);
 
 //HTML variables
@@ -88,10 +97,13 @@ public class Main {
 
             }
         }
+        //after deleting files
         String prevChapTop = null;
         String nextChapTop = null;
         String prevChapBottom= null;
         String nextChapBottom= null;
+
+
 
 //lists chapter folders
         for (File f : actual.listFiles()) {
