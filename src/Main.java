@@ -1,3 +1,10 @@
+//import java.io.BufferedWriter;
+//import java.io.File;
+//import java.io.FileWriter;
+//import java.io.IOException;
+////import java.util.Arrays
+//import java.util.stream.Collectors;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,6 +20,9 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
 //debug+ os
+
+        System.out.println(Arrays.toString(args));
+
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         System.out.println("os name = " + System.getProperty("os.name"));
 
@@ -102,118 +112,127 @@ public class Main {
         String nextChapTop = null;
         String prevChapBottom= null;
         String nextChapBottom= null;
-
+try {
 
 
 //lists chapter folders
-        for (File f : actual.listFiles()) {
-            String chapterName = f.getName();
+    for (File f : actual.listFiles()) {
+        String chapterName = f.getName();
 
-            chapterList.add(chapterName);
-        }
+        chapterList.add(chapterName);
+    }
 
 //chapter sorting
-        //Collections.sort(chapterList, String.CASE_INSENSITIVE_ORDER);
-        chapterList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
+    //Collections.sort(chapterList, String.CASE_INSENSITIVE_ORDER);
+    chapterList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
-        int chNumber = chapterList.size();
-        System.out.println("chNumber= " + chNumber);
-        for (int i = 1; i <= chNumber; ++i) {
-
-
-            //variables for the link to the previous/next page
-            try {
-                prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
-                        "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
-            } catch (Exception e) {
-            }
-
-            try {
-                nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
-                        "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
-            } catch (Exception e) {
-            }
-
-            try {
-                nextChapBottom= "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
-                        "                href=\""+chapterList.get(i)+".html\">Next Chapter ►►</a>\n";
-            }catch (Exception e){}
+    int chNumber = chapterList.size();
+    System.out.println("chNumber= " + chNumber);
+    for (int i = 1; i <= chNumber; ++i) {
 
 
-            try {
-                prevChapBottom= "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
-                        "            href=\""+chapterList.get(i-2)+".html\">◄◄ Previous Chapter </a>\n";
-            }catch (Exception e){}
+        //variables for the link to the previous/next page
+        try {
+            prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
+                    "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+        } catch (Exception e) {
+        }
+
+        try {
+            nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
+                    "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+        } catch (Exception e) {
+        }
+
+        try {
+            nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
+                    "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+        } catch (Exception e) {
+        }
+
+
+        try {
+            prevChapBottom = "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
+                    "            href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+        } catch (Exception e) {
+        }
 
 //writing to html
-            //BufferedWriter bw = null;
-            BufferedWriter
-                    bw = new BufferedWriter(new FileWriter("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1) + ".html"));
+        //BufferedWriter bw = null;
+        BufferedWriter
+                bw = new BufferedWriter(new FileWriter("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1) + ".html"));
 
 //starting to write html file
-            bw.write(htmlHeader);
+        bw.write(htmlHeader);
 //            bw.write("<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>");
-            bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
+        bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
-            bw.write("<div class=\"top-buttons\">\n" +
-                    "        <p> ");
+        bw.write("<div class=\"top-buttons\">\n" +
+                "        <p> ");
 
-            if (i > 1) {
-                bw.write(prevChapTop);
-            }
-            if (i < chNumber) {
-                bw.write(nextChapTop);
-            }
-            bw.write("</p>\n" +
-                    "    </div>");
+        if (i > 1) {
+            bw.write(prevChapTop);
+        }
+        if (i < chNumber) {
+            bw.write(nextChapTop);
+        }
+        bw.write("</p>\n" +
+                "    </div>");
 
 
-            bw.write("<div class=\"chapters\">\n");
+        bw.write("<div class=\"chapters\">\n");
 
-            File manga = new File("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1));
+        File manga = new File("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1));
 
-            for (File p : manga.listFiles()) {
-                String image = p.getName();
+        for (File p : manga.listFiles()) {
+            String image = p.getName();
 
-                //sorting list
-                pageList.add(image);
-            }
-            List<String> pages = pageList.stream()
-                    .filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
+            //sorting list
+            pageList.add(image);
+        }
+        List<String> pages = pageList.stream()
+                .filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
 
 //images sorting
-            //Collections.sort(pages, String.CASE_INSENSITIVE_ORDER);
-            pages.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
+        //Collections.sort(pages, String.CASE_INSENSITIVE_ORDER);
+        pages.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
-            int pNumber = pages.size();
-            System.out.println("pageNumber= " + pNumber);
-            for (int a = 1; a <= pNumber; ++a) {
+        int pNumber = pages.size();
+        System.out.println("pageNumber= " + pNumber);
+        for (int a = 1; a <= pNumber; ++a) {
 
 //adding images to html
-                bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pages.get(a - 1) + "\">\n");
-            }
+            bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pages.get(a - 1) + "\">\n");
+        }
 //next/previous chapter
 
-            bw.write("</div>\n" +
-                    "    <div class=\"nextChap\">\n" +
-                    "        <p>");
+        bw.write("</div>\n" +
+                "    <div class=\"nextChap\">\n" +
+                "        <p>");
 
-            if (i < chNumber) {
-                bw.write(nextChapBottom);
-            }
-
-            if (i > 1) {
-                bw.write("<p>" + prevChapBottom + "</p>");
-            }
-
-
-            System.out.println(pages);
-            System.out.println("chapter finished");
-            bw.write("</p></div>\n" + htmlEnd);
-            bw.close();
-            pageList.removeAll(pageList);
+        if (i < chNumber) {
+            bw.write(nextChapBottom);
         }
-        System.out.println("finished creating files for: " + mangaName);
+
+        if (i > 1) {
+            bw.write("<p>" + prevChapBottom + "</p>");
+        }
+
+
+        System.out.println(pages);
+        System.out.println("chapter finished");
+        bw.write("</p></div>\n" + htmlEnd);
+        bw.close();
+        pageList.removeAll(pageList);
+    }
+    System.out.println("finished creating files for: " + mangaName);
+
+    String firstChapter =("file:///"+System.getProperty("user.dir")+File.separator+"manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
+    firstChapter = firstChapter.replaceAll(" ", "%20");
+    System.out.println("The first chapter is: \n"+firstChapter);
+
+
+}catch (Exception e){}
     }
 }
 
