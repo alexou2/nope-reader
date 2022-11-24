@@ -86,43 +86,43 @@ if(mangaName==null) {
 
 //delete existing html files
         //finds html files
-//        for (File html : actual.listFiles()) {
-//            htmlList.add(html.getName());
-//        }
-//        //filters html files
-//        List<String> htmlFiles = htmlList.stream()
-//                .filter((String s) -> s.contains(".ht")).collect(Collectors.toList());
-//
-//        int number = htmlFiles.size();
-//
-//        //asks for permission before deleting files
-//        if (number == 0) {
-//            System.out.println("no files were found in " + System.getProperty("user.dir"));
-//        } else {
-//            if (number != 0) {
-//                System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
-//                for (int a = 1; a <= number; ++a) {
-//                    System.out.println(htmlFiles.get(a - 1));
-//                }
-//                System.out.println("Do you want to delete them? [Y/n]");
-//                //if "y", delete files
-//                if ("y".equalsIgnoreCase(scan.nextLine())) {
-//                    for (int a = 1; a <= number; ++a) {
-//                        System.out.print("\"" + htmlFiles.get(a - 1));
-//
-//                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlFiles.get(a - 1));
-//
-//                        if (myObj.delete()) {
-//                            System.out.println("\" was deleted");
-//                        }
-//                    }
-//
-//                } else {
-//                    System.out.println("File(s) will not be erased");
-//                }
-//
-//            }
-//        }
+        for (File html : actual.listFiles()) {
+            htmlList.add(html.getName());
+        }
+        //filters html files
+        List<String> htmlFiles = htmlList.stream()
+                .filter((String s) -> s.endsWith(".htm")).collect(Collectors.toList());
+
+        int number = htmlFiles.size();
+
+        //asks for permission before deleting files
+        if (number == 0) {
+            System.out.println("no files were found in " + System.getProperty("user.dir"));
+        } else {
+            if (number != 0) {
+                System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
+                for (int a = 1; a <= number; ++a) {
+                    System.out.println(htmlFiles.get(a - 1));
+                }
+                System.out.println("Do you want to delete them? [Y/n]");
+                //if "y", delete files
+                if ("y".equalsIgnoreCase(scan.nextLine())) {
+                    for (int a = 1; a <= number; ++a) {
+                        System.out.print("\"" + htmlFiles.get(a - 1));
+
+                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlFiles.get(a - 1));
+
+                        if (myObj.delete()) {
+                            System.out.println("\" was deleted");
+                        }
+                    }
+
+                } else {
+                    System.out.println("File(s) will not be erased");
+                }
+
+            }
+        }
         //after deleting files
         String prevChapTop = null;
         String nextChapTop = null;
@@ -148,30 +148,27 @@ try {
 
 
         //variables for the link to the previous/next page
-        try {
+        try { //previous chapter
+            //top
             prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
                     "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
-        } catch (Exception e) {
-        }
-
-        try {
-            nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
-                    "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
-        } catch (Exception e) {
-        }
-
-        try {
-            nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
-                    "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
-        } catch (Exception e) {
-        }
-
-
-        try {
+            //bottom
             prevChapBottom = "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
                     "            href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
         } catch (Exception e) {
+            System.out.println("This is the first chapter");
         }
+
+        try { //next chapter
+            //bottom
+            nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
+                    "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+//top
+            nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
+                    "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+        } catch (Exception e) {
+            System.out.println("This is the last chapter"); }
+
 
 //writing to html
         //BufferedWriter bw = null;
