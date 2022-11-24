@@ -21,8 +21,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //debug+ os
 
-        System.out.println(Arrays.toString(args));
+    System.out.println(Arrays.toString(args));
+        String mangaName = null;
+    try{
 
+    mangaName = args[0];
+    for (int i = 1; i < args.length; i++) {
+        mangaName = mangaName + " " + args[i];
+    }
+    System.out.println(mangaName);
+}catch (Exception e){}
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         System.out.println("os name = " + System.getProperty("os.name"));
 
@@ -60,9 +68,15 @@ public class Main {
         List<String> htmlList = new ArrayList<>(Arrays.asList()); //list for html files
 
 //ask for manga name
-        System.out.print("enter manga name: ");
-        String mangaName = scan.nextLine();
-        System.out.print("\n");
+
+
+
+if(mangaName==null) {
+    System.out.print("enter manga name: ");
+        mangaName = scan.nextLine();
+    System.out.print("\n");
+}
+
 
 //scaning files
         File actual = new File("manga" + File.separator + mangaName);
