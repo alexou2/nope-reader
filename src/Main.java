@@ -41,8 +41,7 @@ public class Main {
 
         //lists mangas
         File mangaAvailable = new File("manga" + File.separator);
-        System.out.print("**************************\n" +
-                "the mangas available are:\n");
+        System.out.print("**************************\n" + "the mangas available are:\n");
         for (File available : mangaAvailable.listFiles()) {
             System.out.print(available.getName() + "\n");
         }
@@ -51,18 +50,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
 //HTML variables
-        final String htmlHeader = ("<!DOCTYPE html>\n"
-                + "<html lang=\"en\">\n"
-                + "<head>\n"
-                + "<link rel=\"stylesheet\" href =\"../../.ressources/manga.css\"/>\n"
-                + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
-                + "<link rel=\"icon\" href=\"../../.ressources/logo.png\" type=\"image/x-icon\" />\n"
-                + "<meta charset=\"UTF-8\">\n"
-                + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
-                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                + "<title>Manga Reader</title>\n"
-                + "</head><body>\n"
-                + "<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>\n");
+        final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\"../../.ressources/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\"../../.ressources/logo.png\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>\n");
         final String htmlEnd = ("</body>\n</html>\n");
 
 
@@ -93,8 +81,7 @@ public class Main {
             htmlList.add(html.getName());
         }
         //filters html files
-        List<String> htmlFiles = htmlList.stream()
-                .filter((String s) -> s.endsWith(".htm")).collect(Collectors.toList());
+        List<String> htmlFiles = htmlList.stream().filter((String s) -> s.endsWith(".htm")).collect(Collectors.toList());
 
         int number = htmlFiles.size();
 
@@ -176,16 +163,14 @@ public class Main {
 
 //writing to html
                 //BufferedWriter bw = null;
-                BufferedWriter
-                        bw = new BufferedWriter(new FileWriter("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1) + ".html"));
+                BufferedWriter bw = new BufferedWriter(new FileWriter("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1) + ".html"));
 
 //starting to write html file
                 bw.write(htmlHeader);
 //            bw.write("<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>");
                 bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
-                bw.write("<div class=\"top-buttons\">\n" +
-                        "        <p> ");
+                bw.write("<div class=\"top-buttons\">\n" + "        <p> ");
 
                 if (i > 1) {
                     bw.write(prevChapTop);
@@ -193,8 +178,7 @@ public class Main {
                 if (i < chNumber) {
                     bw.write(nextChapTop);
                 }
-                bw.write("</p>\n" +
-                        "    </div>");
+                bw.write("</p>\n" + "    </div>");
 
 
                 bw.write("<div class=\"chapters\">\n");
@@ -207,8 +191,7 @@ public class Main {
                     //sorting list
                     pageList.add(image);
                 }
-                List<String> pages = pageList.stream()
-                        .filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
+                List<String> pages = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
 
 //images sorting
                 //Collections.sort(pages, String.CASE_INSENSITIVE_ORDER);
@@ -223,9 +206,7 @@ public class Main {
                 }
 //next/previous chapter
 
-                bw.write("</div>\n" +
-                        "    <div class=\"nextChap\">\n" +
-                        "        <p>");
+                bw.write("</div>\n" + "    <div class=\"nextChap\">\n" + "        <p>");
 
                 if (i < chNumber) {
                     bw.write(nextChapBottom);
