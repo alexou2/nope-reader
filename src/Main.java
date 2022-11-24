@@ -18,22 +18,6 @@ public class Main {
      * @param args the command line arguments
      * @throws IOException
      */
-
-//HTML variables
-    final String htmlHeader = ("<!DOCTYPE html>\n"
-            + "<html lang=\"en\">\n"
-            + "<head>\n"
-            + "<link rel=\"stylesheet\" href =\"../../ressources/manga.css\"/>\n"
-            + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
-            + "<link rel=\"icon\" href=\"../../ressources/logo.png\" type=\"image/x-icon\" />\n"
-            + "<meta charset=\"UTF-8\">\n"
-            + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
-            + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-            + "<title>Manga Reader</title>\n"
-            + "</head><body>\n"
-            + "<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>\n");
-    final String htmlEnd = ("</body>\n</html>\n");
-    
 //     public static void main(String[] args) throws IOException {
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
@@ -66,6 +50,20 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
+//HTML variables
+        final String htmlHeader = ("<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "<link rel=\"stylesheet\" href =\"../../.ressources/manga.css\"/>\n"
+                + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
+                + "<link rel=\"icon\" href=\"../../.ressources/logo.png\" type=\"image/x-icon\" />\n"
+                + "<meta charset=\"UTF-8\">\n"
+                + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "<title>Manga Reader</title>\n"
+                + "</head><body>\n"
+                + "<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>\n");
+        final String htmlEnd = ("</body>\n</html>\n");
 
 
 //array lists
@@ -183,7 +181,7 @@ public class Main {
 
 //starting to write html file
                 bw.write(htmlHeader);
-//            bw.write("<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>");
+//            bw.write("<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>");
                 bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
                 bw.write("<div class=\"top-buttons\">\n" +
