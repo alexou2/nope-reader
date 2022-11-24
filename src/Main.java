@@ -18,11 +18,13 @@ public class Main {
      * @param args the command line arguments
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+//     public static void main(String[] args) throws IOException {
+public static void main(String[] args) throws IOException {
 //debug+ os
 
     System.out.println(Arrays.toString(args));
         String mangaName = null;
+        String firstChapter= null;
     try{
 
     mangaName = args[0];
@@ -84,43 +86,43 @@ if(mangaName==null) {
 
 //delete existing html files
         //finds html files
-        for (File html : actual.listFiles()) {
-            htmlList.add(html.getName());
-        }
-        //filters html files
-        List<String> htmlFiles = htmlList.stream()
-                .filter((String s) -> s.contains(".ht")).collect(Collectors.toList());
-
-        int number = htmlFiles.size();
-
-        //asks for permission before deleting files
-        if (number == 0) {
-            System.out.println("no files were found in " + System.getProperty("user.dir"));
-        } else {
-            if (number != 0) {
-                System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
-                for (int a = 1; a <= number; ++a) {
-                    System.out.println(htmlFiles.get(a - 1));
-                }
-                System.out.println("Do you want to delete them? [Y/n]");
-                //if "y", delete files
-                if ("y".equalsIgnoreCase(scan.nextLine())) {
-                    for (int a = 1; a <= number; ++a) {
-                        System.out.print("\"" + htmlFiles.get(a - 1));
-
-                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlFiles.get(a - 1));
-
-                        if (myObj.delete()) {
-                            System.out.println("\" was deleted");
-                        }
-                    }
-
-                } else {
-                    System.out.println("File(s) will not be erased");
-                }
-
-            }
-        }
+//        for (File html : actual.listFiles()) {
+//            htmlList.add(html.getName());
+//        }
+//        //filters html files
+//        List<String> htmlFiles = htmlList.stream()
+//                .filter((String s) -> s.contains(".ht")).collect(Collectors.toList());
+//
+//        int number = htmlFiles.size();
+//
+//        //asks for permission before deleting files
+//        if (number == 0) {
+//            System.out.println("no files were found in " + System.getProperty("user.dir"));
+//        } else {
+//            if (number != 0) {
+//                System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
+//                for (int a = 1; a <= number; ++a) {
+//                    System.out.println(htmlFiles.get(a - 1));
+//                }
+//                System.out.println("Do you want to delete them? [Y/n]");
+//                //if "y", delete files
+//                if ("y".equalsIgnoreCase(scan.nextLine())) {
+//                    for (int a = 1; a <= number; ++a) {
+//                        System.out.print("\"" + htmlFiles.get(a - 1));
+//
+//                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlFiles.get(a - 1));
+//
+//                        if (myObj.delete()) {
+//                            System.out.println("\" was deleted");
+//                        }
+//                    }
+//
+//                } else {
+//                    System.out.println("File(s) will not be erased");
+//                }
+//
+//            }
+//        }
         //after deleting files
         String prevChapTop = null;
         String nextChapTop = null;
@@ -241,7 +243,7 @@ try {
     }
     System.out.println("finished creating files for: " + mangaName);
 
-    String firstChapter =("file:///"+System.getProperty("user.dir")+File.separator+"manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
+    firstChapter =("file:///"+System.getProperty("user.dir")+File.separator+"manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
     firstChapter = firstChapter.replaceAll(" ", "%20");
     System.out.println("The first chapter is: \n"+firstChapter);
 

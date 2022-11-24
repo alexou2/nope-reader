@@ -14,7 +14,7 @@ h1 {
   display: block;
   margin: 5px auto 0;
   margin-top: 5px;
-  max width: 100%;
+
   height: auto;
 }
 
