@@ -127,7 +127,7 @@ public class Main {
 
                 chapterList.add(chapterName);
             }
-
+            chapterList = chapterList.stream().filter((String s) -> !s.endsWith(".html")).collect(Collectors.toList());
 //chapter sorting
             //Collections.sort(chapterList, String.CASE_INSENSITIVE_ORDER);
             chapterList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
@@ -191,18 +191,22 @@ public class Main {
                     //sorting list
                     pageList.add(image);
                 }
-                List<String> pages = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
+
+                pageList = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
+
+
+//                List<String> pages = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
 
 //images sorting
                 //Collections.sort(pages, String.CASE_INSENSITIVE_ORDER);
-                pages.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
+                pageList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
-                int pNumber = pages.size();
+                int pNumber = pageList.size();
                 System.out.println("pageNumber= " + pNumber);
                 for (int a = 1; a <= pNumber; ++a) {
 
 //adding images to html
-                    bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pages.get(a - 1) + "\">\n");
+                    bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pageList.get(a - 1) + "\">\n");
                 }
 //next/previous chapter
 
@@ -217,7 +221,7 @@ public class Main {
                 }
 
 
-                System.out.println(pages);
+                System.out.println(pageList);
                 System.out.println("chapter finished");
                 bw.write("</p></div>\n" + htmlEnd);
                 bw.close();
