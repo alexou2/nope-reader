@@ -106,7 +106,6 @@ public class Main {
                             System.out.println("\" was deleted");
                         }
                     }
-
                 } else {
                     System.out.println("File(s) will not be erased");
                 }
@@ -219,8 +218,6 @@ public class Main {
                 if (i > 1) {
                     bw.write("<p>" + prevChapBottom + "</p>");
                 }
-
-
                 System.out.println(pageList);
                 System.out.println("chapter finished");
                 bw.write("</p></div>\n" + htmlEnd);
@@ -232,7 +229,6 @@ public class Main {
             firstChapter = ("file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
             firstChapter = firstChapter.replaceAll(" ", "%20");
             System.out.println("The first chapter is: \n" + firstChapter);
-
 
         } catch (Exception e) {
         }
