@@ -81,9 +81,9 @@ public class Main {
             htmlList.add(html.getName());
         }
         //filters html files
-        List<String> htmlFiles = htmlList.stream().filter((String s) -> s.endsWith(".htm")).collect(Collectors.toList());
+        htmlList = htmlList.stream().filter((String s) -> s.endsWith(".htm")).collect(Collectors.toList());
 
-        int number = htmlFiles.size();
+        int number = htmlList.size();
 
         //asks for permission before deleting files
         if (number == 0) {
@@ -92,15 +92,15 @@ public class Main {
             if (number != 0) {
                 System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
                 for (int a = 1; a <= number; ++a) {
-                    System.out.println(htmlFiles.get(a - 1));
+                    System.out.println(htmlList.get(a - 1));
                 }
                 System.out.println("Do you want to delete them? [Y/n]");
                 //if "y", delete files
                 if ("y".equalsIgnoreCase(scan.nextLine())) {
                     for (int a = 1; a <= number; ++a) {
-                        System.out.print("\"" + htmlFiles.get(a - 1));
+                        System.out.print("\"" + htmlList.get(a - 1));
 
-                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlFiles.get(a - 1));
+                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlList.get(a - 1));
 
                         if (myObj.delete()) {
                             System.out.println("\" was deleted");
