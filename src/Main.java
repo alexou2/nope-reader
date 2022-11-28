@@ -86,6 +86,8 @@ public class Main {
         //filters html files
         htmlList = htmlList.stream().filter((String s) -> s.endsWith(".htm")).collect(Collectors.toList());
 
+        sorter(htmlList);
+
         int number = htmlList.size();
 
         //asks for permission before deleting files
@@ -250,7 +252,7 @@ public class Main {
     }
 
 
-//
+//regex to sort chapters/pages
     public static String[] sorter (List<String> list){
         Collections.sort(list, new Comparator<String>() {
             //            Pattern pattern = Pattern.compile( ".*Ch.*(\\d+).*" );
