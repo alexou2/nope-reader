@@ -5,10 +5,12 @@
 ////import java.util.Arrays
 //import java.util.stream.Collectors;
 
+import javax.sound.midi.Soundbank;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -241,11 +243,13 @@ public class Main {
                 bw.close();
                 pageList.removeAll(pageList);
             }
-            System.out.println("finished creating files for: " + mangaName);
+            System.out.println("\nfinished creating files for: " + mangaName);
+            System.out.print("\nIts chapters are:\n");
+            for (int i = 0; i<chapterList.size();i++) System.out.println(chapterList.get(i));
 
             firstChapter = ("file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
             firstChapter = firstChapter.replaceAll(" ", "%20");
-            System.out.println("The first chapter is: \n" + firstChapter);
+            System.out.println("\nThe first chapter is: \n" + firstChapter);
 
         } catch (Exception e) {
         }
