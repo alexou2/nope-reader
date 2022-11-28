@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -18,7 +20,8 @@ public class Main {
      * @param args the command line arguments
      * @throws IOException
      */
-//     public static void main(String[] args) throws IOException {
+
+
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
@@ -131,6 +134,12 @@ public class Main {
             //Collections.sort(chapterList, String.CASE_INSENSITIVE_ORDER);
             chapterList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
+
+
+            sorter(chapterList);
+
+
+
             int chNumber = chapterList.size();
             System.out.println("chNumber= " + chNumber);
             for (int i = 1; i <= chNumber; ++i) {
@@ -200,6 +209,12 @@ public class Main {
                 //Collections.sort(pages, String.CASE_INSENSITIVE_ORDER);
                 pageList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
+
+
+                sorter(pageList);
+
+
+
                 int pNumber = pageList.size();
                 System.out.println("pageNumber= " + pNumber);
                 for (int a = 1; a <= pNumber; ++a) {
@@ -233,4 +248,46 @@ public class Main {
         } catch (Exception e) {
         }
     }
+
+
+//
+    public static String[] sorter (List<String> list){
+        Collections.sort(list, new Comparator<String>() {
+            //            Pattern pattern = Pattern.compile( ".*Ch.*(\\d+).*" );
+            Pattern pattern = Pattern.compile(".*Ch.?.?.?.?.?.?(\\d+).*", Pattern.CASE_INSENSITIVE);
+
+            @Override
+            public int compare(String s1, String s2) {
+                if (s1 == null && s2 == null) {
+                    return 0;
+                } else if (s1 != null && s2 == null) {
+                    return -1;
+                } else if (s1 == null && s2 != null) {
+                    return 1;
+                } else {
+                    Matcher s1Matcher = pattern.matcher(s1);
+                    Matcher s2Matcher = pattern.matcher(s2);
+                    if (!s1Matcher.matches() && !s2Matcher.matches()) {
+                        return s1.compareTo(s2);
+                    } else if (s1Matcher.matches() && !s2Matcher.matches()) {
+                        return -1;
+                    } else if (!s1Matcher.matches() && s2Matcher.matches()) {
+                        return 1;
+                    } else {
+                        int i1 = Integer.parseInt(s1Matcher.group(1));
+                        int i2 = Integer.parseInt(s2Matcher.group(1));
+                        return i1 - i2;
+                    }
+                }
+            }
+
+        });
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("\n" + list.get(i));
+        }
+
+
+        return list.toArray(new String[0]);
+    }
+
 }
