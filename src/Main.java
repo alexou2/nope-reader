@@ -55,7 +55,7 @@ public class Main {
         }
         System.out.print("**************************\n");
 
-//        if (mangaName == null) {
+        if (mangaName == null) {
             System.out.print("enter manga name: ");
             mangaName = scan.nextLine();
             System.out.print("\n");
@@ -68,7 +68,7 @@ public class Main {
 //                    nb++;
 //                }
 //            }
-//        }
+        }
 
 
 
@@ -220,22 +220,16 @@ public class Main {
 
                 pageList = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
 
-
-//                List<String> pages = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
-
 //images sorting
                 //Collections.sort(pages, String.CASE_INSENSITIVE_ORDER);
                 pageList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
-
-
-                sorter(pageList);
-
-
+//                sorter(pageList);
 
                 int pNumber = pageList.size();
-                System.out.println("pageNumber= " + pNumber);
+                System.out.println("\npageNumber= " + pNumber+"\n");
                 for (int a = 1; a <= pNumber; ++a) {
+                    System.out.println(pageList.get(a-1));
 
 //adding images to html
                     bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pageList.get(a - 1) + "\">\n");
