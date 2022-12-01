@@ -13,6 +13,12 @@ public class Main {
      * @param args the command line arguments
      */
 
+    /*
+    creates html files with jpg files to view in browser
+
+     */
+
+
 
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
