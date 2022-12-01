@@ -1,10 +1,3 @@
-//import java.io.BufferedWriter;
-//import java.io.File;
-//import java.io.FileWriter;
-//import java.io.IOException;
-////import java.util.Arrays
-//import java.util.stream.Collectors;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -161,25 +154,29 @@ public class Main {
             int chNumber = chapterList.size();
             System.out.println("chNumber= " + chNumber);
             for (int i = 1; i <= chNumber; ++i) {
-
+                System.out.print("\n"+chapterList.get(i-1));
 
                 //variables for the link to the previous/next page
                 try { //previous chapter
                     //top
-                    prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" + "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+                    prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n"
+                            + "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
                     //bottom
-                    prevChapBottom = "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" + "            href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+                    prevChapBottom = "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n"
+                            + "            href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
                 } catch (Exception e) {
-                    System.out.println("This is the first chapter");
+                    System.out.print("\nThis is the first chapter");
                 }
 
                 try { //next chapter
                     //bottom
-                    nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" + "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+                    nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n"
+                            + "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
 //top
-                    nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" + "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+                    nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n"
+                            + "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
                 } catch (Exception e) {
-                    System.out.println("This is the last chapter");
+                    System.out.print("\nThis is the last chapter");
                 }
 
 
@@ -199,7 +196,8 @@ public class Main {
                 if (i < chNumber) {
                     bw.write(nextChapTop);
                 }
-                bw.write("</p>\n" + "    </div>");
+                bw.write("</p>\n"
+                        + "    </div>");
 
 
                 bw.write("<div class=\"chapters\">\n");
@@ -222,7 +220,7 @@ public class Main {
 //                sorter(pageList);
 
                 int pNumber = pageList.size();
-                System.out.println("\npageNumber= " + pNumber + "\n");
+                System.out.println("\npageNumber= " + pNumber );
                 for (int a = 1; a <= pNumber; ++a) {
                     System.out.println(pageList.get(a - 1));
 
@@ -250,13 +248,12 @@ public class Main {
             }
             System.out.println("\nfinished creating files for: " + mangaName);
             System.out.print("\nIts chapters are:\n");
-            for (int i = 0; i < chapterList.size(); i++) System.out.println(chapterList.get(i));
+            for (String s : chapterList) System.out.println(s);
 
-            firstChapter = ("""
-                    file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html
-                    """);
+            firstChapter = (" file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
             firstChapter = firstChapter.replaceAll(" ", "%20");
-            System.out.println("\nThe first chapter is: \n" + firstChapter);
+            System.out.println("\nThe first chapter is: \n"
+                    + firstChapter);
 
         } catch (Exception e) {
         }
@@ -265,9 +262,9 @@ public class Main {
 
     //regex to sort chapters/pages
     public static void sorter(List<String> list) {
-        Collections.sort(list, new Comparator<String>() {
+        list.sort(new Comparator<>() {
             //            Pattern pattern = Pattern.compile( ".*Ch.*(\\d+).*" );
-            Pattern pattern = Pattern.compile(".*Ch.?.?.?.?.?.?(\\d+).*", Pattern.CASE_INSENSITIVE);
+            final Pattern pattern = Pattern.compile(".*Ch.?.?.?.?.?.?(\\d+).*", Pattern.CASE_INSENSITIVE);
 
             @Override
             public int compare(String s1, String s2) {
@@ -275,7 +272,7 @@ public class Main {
                     return 0;
                 } else if (s1 != null && s2 == null) {
                     return -1;
-                } else if (s1 == null && s2 != null) {
+                } else if (s1 == null) {
                     return 1;
                 } else {
                     Matcher s1Matcher = pattern.matcher(s1);
@@ -295,8 +292,8 @@ public class Main {
             }
 
         });
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("\n" + list.get(i));
+        for (String s : list) {
+            System.out.println("\n" + s);
         }
 
 
