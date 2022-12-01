@@ -59,7 +59,7 @@ public class Main {
             if(String.valueOf(mangaName) !=null){
                 int mangaNumber = Integer.parseInt(mangaName);
 
-                File available : mangaAvailable.listFiles()) {
+                for (File available : mangaAvailable.listFiles()) {
                     System.out.print(nb +". "+available.getName() + "\n");
                     nb++;
                 }
