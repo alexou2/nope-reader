@@ -1,9 +1,6 @@
-./manga/
-*.html
+manga/*
 *.jpg
 *.js
-*.html
-*.html
-*.css
 *.htm
 *.png
+*.html

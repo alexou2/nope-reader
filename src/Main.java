@@ -24,6 +24,7 @@ public class Main {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
         String firstChapter = null;
+        Scanner scan = new Scanner(System.in);
 
 
         //takes arguments from command line for mangaName
@@ -43,12 +44,29 @@ public class Main {
         //lists mangas
         File mangaAvailable = new File("manga" + File.separator);
         System.out.print("**************************\n" + "the mangas available are:\n");
+        int nb = 1;
         for (File available : mangaAvailable.listFiles()) {
-            System.out.print(available.getName() + "\n");
+            System.out.print(nb +". "+available.getName() + "\n");
+            nb++;
         }
         System.out.print("**************************\n");
 
-        Scanner scan = new Scanner(System.in);
+        if (mangaName == null) {
+            System.out.print("enter manga name: ");
+            mangaName = scan.nextLine();
+            System.out.print("\n");
+
+            if(String.valueOf(mangaName) !=null){
+                int mangaNumber = Integer.parseInt(mangaName);
+
+                File available : mangaAvailable.listFiles()) {
+                    System.out.print(nb +". "+available.getName() + "\n");
+                    nb++;
+                }
+            }
+        }
+
+
 
 //HTML variables
         final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\"../../.ressources/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\"../../.ressources/logo.png\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>\n");
@@ -66,11 +84,7 @@ public class Main {
 
 
 //if no arguments, run this couple of lines
-        if (mangaName == null) {
-            System.out.print("enter manga name: ");
-            mangaName = scan.nextLine();
-            System.out.print("\n");
-        }
+
 
 
 //scaning files
@@ -241,7 +255,9 @@ public class Main {
             for (int i = 0; i < chapterList.size(); i++) System.out.println(chapterList.get(i));
 
 
-            firstChapter = ("file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
+            firstChapter = ("""
+                    file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html
+                    """);
             firstChapter = firstChapter.replaceAll(" ", "%20");
             System.out.println("\nThe first chapter is: \n" + firstChapter);
 
