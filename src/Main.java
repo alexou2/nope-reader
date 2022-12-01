@@ -88,16 +88,11 @@ public class Main {
 
 
 //array lists
-        List<String> pageList = new ArrayList<>(Arrays.asList()); //list for manga pages
+        List<String> pageList = new ArrayList<>(List.of()); //list for manga pages
 
-        List<String> chapterList = new ArrayList<>(Arrays.asList()); //list for chapters
+        List<String> chapterList = new ArrayList<>(List.of()); //list for chapters
 
-        List<String> htmlList = new ArrayList<>(Arrays.asList()); //list for html files
-
-//ask for manga name
-
-
-//if no arguments, run this couple of lines
+        List<String> htmlList = new ArrayList<>(List.of()); //list for html files
 
 
 //scaning files
@@ -105,7 +100,7 @@ public class Main {
 
 //delete existing html files
         //finds html files
-        for (File html : actual.listFiles()) {
+        for (File html : Objects.requireNonNull(actual.listFiles())) {
             htmlList.add(html.getName());
         }
         //filters html files
@@ -119,28 +114,26 @@ public class Main {
         if (number == 0) {
             System.out.println("no files were found in " + System.getProperty("user.dir"));
         } else {
-            if (number != 0) {
-                System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
-                for (int a = 1; a <= number; ++a) {
-                    System.out.println(htmlList.get(a - 1));
-                }
-                System.out.println("Do you want to delete them? [Y/n]");
-                //if "y", delete files
-                if ("y".equalsIgnoreCase(scan.nextLine())) {
-                    for (int a = 1; a <= number; ++a) {
-                        System.out.print("\"" + htmlList.get(a - 1));
-
-                        File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlList.get(a - 1));
-
-                        if (myObj.delete()) {
-                            System.out.println("\" was deleted");
-                        }
-                    }
-                } else {
-                    System.out.println("File(s) will not be erased");
-                }
-
+            System.out.println(number + " files were found in " + System.getProperty("user.dir") + ":");
+            for (int a = 1; a <= number; ++a) {
+                System.out.println(htmlList.get(a - 1));
             }
+            System.out.println("Do you want to delete them? [Y/n]");
+            //if "y", delete files
+            if ("y".equalsIgnoreCase(scan.nextLine())) {
+                for (int a = 1; a <= number; ++a) {
+                    System.out.print("\"" + htmlList.get(a - 1));
+
+                    File myObj = new File("manga" + File.separator + mangaName + File.separator + htmlList.get(a - 1));
+
+                    if (myObj.delete()) {
+                        System.out.println("\" was deleted");
+                    }
+                }
+            } else {
+                System.out.println("File(s) will not be erased");
+            }
+
         }
         //after deleting files
         String prevChapTop = null;
@@ -151,7 +144,7 @@ public class Main {
 
 
 //lists chapter folders
-            for (File f : actual.listFiles()) {
+            for (File f : Objects.requireNonNull(actual.listFiles())) {
                 String chapterName = f.getName();
 
                 chapterList.add(chapterName);
@@ -213,7 +206,7 @@ public class Main {
 
                 File manga = new File("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1));
 
-                for (File p : manga.listFiles()) {
+                for (File p : Objects.requireNonNull(manga.listFiles())) {
                     String image = p.getName();
 
                     //sorting list
@@ -238,7 +231,9 @@ public class Main {
                 }
 //next/previous chapter
 
-                bw.write("</div>\n" + "    <div class=\"nextChap\">\n" + "        <p>");
+                bw.write("</div>\n"
+                        + "    <div class=\"nextChap\">\n"
+                        + "        <p>");
 
                 if (i < chNumber) {
                     bw.write(nextChapBottom);
