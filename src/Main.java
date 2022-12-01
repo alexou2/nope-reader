@@ -10,16 +10,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
+
     /**
      * @param args the command line arguments
      * @throws IOException
      */
+
+
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
@@ -147,7 +151,9 @@ public class Main {
             chapterList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
 
+
             sorter(chapterList);
+
 
 
             int chNumber = chapterList.size();
@@ -220,7 +226,9 @@ public class Main {
                 pageList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
 
+
                 sorter(pageList);
+
 
 
                 int pNumber = pageList.size();
@@ -247,11 +255,9 @@ public class Main {
                 bw.close();
                 pageList.removeAll(pageList);
             }
-
             System.out.println("\nfinished creating files for: " + mangaName);
             System.out.print("\nIts chapters are:\n");
-            for (int i = 0; i < chapterList.size(); i++) System.out.println(chapterList.get(i));
-
+            for (int i = 0; i<chapterList.size();i++) System.out.println(chapterList.get(i));
 
             firstChapter = ("""
                     file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html
@@ -260,13 +266,12 @@ public class Main {
             System.out.println("\nThe first chapter is: \n" + firstChapter);
 
         } catch (Exception e) {
-            System.out.println("an error occured");
         }
     }
 
 
-    //regex to sort chapters/pages
-    public static String[] sorter(List<String> list) {
+//regex to sort chapters/pages
+    public static String[] sorter (List<String> list){
         Collections.sort(list, new Comparator<String>() {
             //            Pattern pattern = Pattern.compile( ".*Ch.*(\\d+).*" );
             Pattern pattern = Pattern.compile(".*Ch.?.?.?.?.?.?(\\d+).*", Pattern.CASE_INSENSITIVE);
