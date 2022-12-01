@@ -264,7 +264,7 @@ public class Main {
 
 
     //regex to sort chapters/pages
-    public static String[] sorter(List<String> list) {
+    public static void sorter(List<String> list) {
         Collections.sort(list, new Comparator<String>() {
             //            Pattern pattern = Pattern.compile( ".*Ch.*(\\d+).*" );
             Pattern pattern = Pattern.compile(".*Ch.?.?.?.?.?.?(\\d+).*", Pattern.CASE_INSENSITIVE);
@@ -300,7 +300,7 @@ public class Main {
         }
 
 
-        return list.toArray(new String[0]);
+        list.toArray(new String[0]);
     }
 
 }
