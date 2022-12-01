@@ -51,20 +51,20 @@ public class Main {
         }
         System.out.print("**************************\n");
 
-        if (mangaName == null) {
+//        if (mangaName == null) {
             System.out.print("enter manga name: ");
             mangaName = scan.nextLine();
             System.out.print("\n");
-
-            if(String.valueOf(mangaName) !=null){
-                int mangaNumber = Integer.parseInt(mangaName);
-
-                for (File available : mangaAvailable.listFiles()) {
-                    System.out.print(nb +". "+available.getName() + "\n");
-                    nb++;
-                }
-            }
-        }
+//
+//            if(String.valueOf(mangaName) !=null){
+//                int mangaNumber = Integer.parseInt(mangaName);
+//
+//                for (File available : mangaAvailable.listFiles()) {
+//                    System.out.print(nb +". "+available.getName() + "\n");
+//                    nb++;
+//                }
+//            }
+//        }
 
 
 
