@@ -5,12 +5,10 @@
 ////import java.util.Arrays
 //import java.util.stream.Collectors;
 
-import javax.sound.midi.Soundbank;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,14 +18,13 @@ public class Main {
 
     /**
      * @param args the command line arguments
-     * @throws IOException
      */
 
 
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
-        String firstChapter = null;
+        String firstChapter;
         Scanner scan = new Scanner(System.in);
 
 
@@ -47,10 +44,12 @@ public class Main {
 
         //lists mangas
         File mangaAvailable = new File("manga" + File.separator);
-        System.out.print("**************************\n" + "the mangas available are:\n");
+
+        System.out.print("**************************\n"
+                + "the mangas available are:\n");
         int nb = 1;
-        for (File available : mangaAvailable.listFiles()) {
-            System.out.print(nb +". "+available.getName() + "\n");
+        for (File available : Objects.requireNonNull(mangaAvailable.listFiles())) {
+            System.out.print(nb + ". " + available.getName() + "\n");
             nb++;
         }
         System.out.print("**************************\n");
@@ -59,7 +58,7 @@ public class Main {
             System.out.print("enter manga name: ");
             mangaName = scan.nextLine();
             System.out.print("\n");
-//
+
 //            if(String.valueOf(mangaName) !=null){
 //                int mangaNumber = Integer.parseInt(mangaName);
 //
@@ -71,9 +70,20 @@ public class Main {
         }
 
 
-
 //HTML variables
-        final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\"../../.ressources/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\"../../.ressources/logo.png\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>\n");
+        final String htmlHeader = ("<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "<link rel=\"stylesheet\" href =\"../../ressources/manga.css\"/>\n"
+                + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
+                + "<link rel=\"icon\" href=\"../../ressources/logo.png\" type=\"image/x-icon\" />\n"
+                + "<meta charset=\"UTF-8\">\n"
+                + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "<title>Manga Reader</title>\n"
+                + "</head><body>\n"
+                + "<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>\n");
+
         final String htmlEnd = ("</body>\n</html>\n");
 
 
@@ -88,7 +98,6 @@ public class Main {
 
 
 //if no arguments, run this couple of lines
-
 
 
 //scaning files
@@ -153,9 +162,7 @@ public class Main {
             chapterList.sort(Comparator.nullsFirst(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())));
 
 
-
             sorter(chapterList);
-
 
 
             int chNumber = chapterList.size();
@@ -166,22 +173,18 @@ public class Main {
                 //variables for the link to the previous/next page
                 try { //previous chapter
                     //top
-                    prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" +
-                            "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+                    prevChapTop = "<a button type=\"button\" class=\"btn btn-warning btn-lg\"\n" + "                href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
                     //bottom
-                    prevChapBottom = "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" +
-                            "            href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
+                    prevChapBottom = "<a button type=\"button\" class=\"btn btn-outline-warning btn-sm\"\n" + "            href=\"" + chapterList.get(i - 2) + ".html\">◄◄ Previous Chapter </a>\n";
                 } catch (Exception e) {
                     System.out.println("This is the first chapter");
                 }
 
                 try { //next chapter
                     //bottom
-                    nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" +
-                            "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+                    nextChapTop = "<a button type=\"button\" class=\"btn btn-primary btn-lg\"\n" + "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
 //top
-                    nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" +
-                            "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
+                    nextChapBottom = "<a button type=\"button\" class=\"btn btn-primary btn-lg btn-block\"\n" + "                href=\"" + chapterList.get(i) + ".html\">Next Chapter ►►</a>\n";
                 } catch (Exception e) {
                     System.out.println("This is the last chapter");
                 }
@@ -193,7 +196,6 @@ public class Main {
 
 //starting to write html file
                 bw.write(htmlHeader);
-//            bw.write("<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>");
                 bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
                 bw.write("<div class=\"top-buttons\">\n" + "        <p> ");
@@ -227,9 +229,9 @@ public class Main {
 //                sorter(pageList);
 
                 int pNumber = pageList.size();
-                System.out.println("\npageNumber= " + pNumber+"\n");
+                System.out.println("\npageNumber= " + pNumber + "\n");
                 for (int a = 1; a <= pNumber; ++a) {
-                    System.out.println(pageList.get(a-1));
+                    System.out.println(pageList.get(a - 1));
 
 //adding images to html
                     bw.write("<img src=\"" + chapterList.get(i - 1) + "/" + pageList.get(a - 1) + "\">\n");
@@ -253,7 +255,7 @@ public class Main {
             }
             System.out.println("\nfinished creating files for: " + mangaName);
             System.out.print("\nIts chapters are:\n");
-            for (int i = 0; i<chapterList.size();i++) System.out.println(chapterList.get(i));
+            for (int i = 0; i < chapterList.size(); i++) System.out.println(chapterList.get(i));
 
             firstChapter = ("""
                     file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html
@@ -266,8 +268,8 @@ public class Main {
     }
 
 
-//regex to sort chapters/pages
-    public static String[] sorter (List<String> list){
+    //regex to sort chapters/pages
+    public static String[] sorter(List<String> list) {
         Collections.sort(list, new Comparator<String>() {
             //            Pattern pattern = Pattern.compile( ".*Ch.*(\\d+).*" );
             Pattern pattern = Pattern.compile(".*Ch.?.?.?.?.?.?(\\d+).*", Pattern.CASE_INSENSITIVE);
