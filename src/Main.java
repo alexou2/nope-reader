@@ -188,7 +188,8 @@ public class Main {
                 bw.write(htmlHeader);
                 bw.write("<h1>" + chapterList.get(i - 1) + "</h1>\n");
 
-                bw.write("<div class=\"top-buttons\">\n" + "        <p> ");
+                bw.write("<div class=\"top-buttons\">\n"
+                        + "        <p> ");
 
                 if (i > 1) {
                     bw.write(prevChapTop);
@@ -242,7 +243,8 @@ public class Main {
                 }
                 System.out.println(pageList);
                 System.out.println("chapter finished");
-                bw.write("</p></div>\n" + htmlEnd);
+                bw.write("</p></div>\n"
+                        + htmlEnd);
                 bw.close();
                 pageList.removeAll(pageList);
             }
@@ -293,7 +295,8 @@ public class Main {
 
         });
         for (String s : list) {
-            System.out.println("\n" + s);
+            System.out.println("\n"
+                    + s);
         }
 
 
