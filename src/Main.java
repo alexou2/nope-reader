@@ -46,15 +46,15 @@ public class Main {
         System.out.print("**************************\n" + "the mangas available are:\n");
         int nb = 1;
         for (File available : mangaAvailable.listFiles()) {
-            System.out.print(nb +". "+available.getName() + "\n");
+            System.out.print(nb + ". " + available.getName() + "\n");
             nb++;
         }
         System.out.print("**************************\n");
 
 //        if (mangaName == null) {
-            System.out.print("enter manga name: ");
-            mangaName = scan.nextLine();
-            System.out.print("\n");
+        System.out.print("enter manga name: ");
+        mangaName = scan.nextLine();
+        System.out.print("\n");
 //
 //            if(String.valueOf(mangaName) !=null){
 //                int mangaNumber = Integer.parseInt(mangaName);
@@ -67,9 +67,8 @@ public class Main {
 //        }
 
 
-
 //HTML variables
-        final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\"../../.ressources/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\"../../.ressources/logo.png\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\"../../.ressources/logo.png\">\n</div>\n");
+        final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\"../../ressources/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\"../../ressources/logo.png\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>\n");
         final String htmlEnd = ("</body>\n</html>\n");
 
 
@@ -84,7 +83,6 @@ public class Main {
 
 
 //if no arguments, run this couple of lines
-
 
 
 //scaning files
