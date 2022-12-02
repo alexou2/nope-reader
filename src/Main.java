@@ -17,9 +17,6 @@ public class Main {
     creates html files with jpg files to view in browser
 
      */
-
-
-
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
@@ -160,7 +157,7 @@ public class Main {
             int chNumber = chapterList.size();
             System.out.println("chNumber= " + chNumber);
             for (int i = 1; i <= chNumber; ++i) {
-                System.out.print("\n"+chapterList.get(i-1));
+                System.out.print("\n" + chapterList.get(i - 1));
 
                 //variables for the link to the previous/next page
                 try { //previous chapter
@@ -227,7 +224,7 @@ public class Main {
 //                sorter(pageList);
 
                 int pNumber = pageList.size();
-                System.out.println("\npageNumber= " + pNumber );
+                System.out.println("\npageNumber= " + pNumber);
                 for (int a = 1; a <= pNumber; ++a) {
                     System.out.println(pageList.get(a - 1));
 
@@ -258,7 +255,7 @@ public class Main {
             System.out.print("\nIts chapters are:\n");
             for (String s : chapterList) System.out.println(s);
 
-            firstChapter = (" file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
+            firstChapter = ("file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
             firstChapter = firstChapter.replaceAll(" ", "%20");
             System.out.println("\nThe first chapter is: \n"
                     + firstChapter);

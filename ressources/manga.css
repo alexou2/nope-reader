@@ -42,4 +42,6 @@ img {
 .btn {
   width: 49%;
   display: inline-block;
+  height: 3em;
+  text-align: center;
 }
