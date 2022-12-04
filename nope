@@ -1,3 +1,5 @@
 #!/bin/bash
 cd /home/alexou/Documents/nope-reader/
-java src/Main.java
+java src/Main.java $@
+echo -e "\n \n \n  you can now go to ~/Documents/nope-reader/manga/ to read the>
+#nautilus /home/alexou/Documents/nope-reader/manga/
