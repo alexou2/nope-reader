@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 public class Main {
 
     /**
@@ -17,6 +16,7 @@ public class Main {
     creates html files with jpg files to view in browser
 
      */
+
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
@@ -24,15 +24,55 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
 
+        String htmlHeader;
+
+
+        String ipadPath = "./ressources";
+        String pcPath = "../../ressources";
+        String path;
+        String argument = null;
+        try {
+            argument = args[0];
+
+        } catch (Exception e) {
+        }
+
+        switch (argument) {
+            case "-i": {
+                path = ipadPath;
+                break;
+            }
+            default: {
+                path = pcPath;
+            }
+        }
+
+
+        htmlHeader = ("<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "<link rel=\"stylesheet\" href =\"" + path + "/manga.css\"/>\n"
+                + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
+                + "<link rel=\"icon\" href=\"" + path + "/logo.png\" type=\"image/x-icon\" />\n"
+                + "<meta charset=\"UTF-8\">\n"
+                + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "<title>Manga Reader</title>\n"
+                + "</head><body>\n"
+                + "<div class=\"logo\">\n<img src =\"" + path + "/logo.png\">\n</div>\n");
+
+
         //takes arguments from command line for mangaName
         try {
-            mangaName = args[0];
-            for (int i = 1; i < args.length; i++) {
+            int i = 1;
+            mangaName = args[i];
+            for (i = 1; i < args.length; i++) {
                 mangaName = mangaName + " " + args[i];
             }
             System.out.println(mangaName);
         } catch (Exception e) {
         }
+
 
 //debug+ os
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -55,30 +95,10 @@ public class Main {
             mangaName = scan.nextLine();
             System.out.print("\n");
 
-//            if(String.valueOf(mangaName) !=null){
-//                int mangaNumber = Integer.parseInt(mangaName);
-//
-//                for (File available : mangaAvailable.listFiles()) {
-//                    System.out.print(nb +". "+available.getName() + "\n");
-//                    nb++;
-//                }
-//            }
         }
 
 
 //HTML variables
-        final String htmlHeader = ("<!DOCTYPE html>\n"
-                + "<html lang=\"en\">\n"
-                + "<head>\n"
-                + "<link rel=\"stylesheet\" href =\"../../ressources/manga.css\"/>\n"
-                + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>"
-                + "<link rel=\"icon\" href=\"../../ressources/logo.png\" type=\"image/x-icon\" />\n"
-                + "<meta charset=\"UTF-8\">\n"
-                + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
-                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                + "<title>Manga Reader</title>\n"
-                + "</head><body>\n"
-                + "<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>\n");
 
         final String htmlEnd = ("</body>\n</html>\n");
 
