@@ -306,4 +306,15 @@ public class Main {
         list.toArray(new String[0]);
     }
 
+    //takes argiments like "-i" and returns a path
+    public String[] pathFinder(String[] args) {
+        String path;
+        String mangaName;
+        String[] arguments = new String[2];
+
+
+        return arguments;
+    }
+
+
 }
