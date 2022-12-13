@@ -250,6 +250,7 @@ String path = "../../ressources";
             System.out.println("\nThe first chapter is: \n" + firstChapter);
 
         } catch (Exception e) {
+            System.out.println("\n\n\nERROR CREATING CHAPTERS\n");
         }
     }
 
