@@ -22,17 +22,28 @@ public class Main {
         String mangaName = null;
         String firstChapter;
         Scanner scan = new Scanner(System.in);
+String path = "../../ressources";
 
-
-        //takes arguments from command line for mangaName
+        //takes arguments (args) from command line for mangaName
         try {
-            mangaName = args[0];
-            for (int i = 1; i < args.length; i++) {
-                mangaName = mangaName + " " + args[i];
+            String[] arguments = pathFinder(args);
+            path = arguments[0];
+            if (arguments[1] != null) {
+                mangaName = arguments[1];
             }
-            System.out.println(mangaName);
-        } catch (Exception e) {
+        }catch (Exception e){
+            System.out.println("no arguments were given");
+
         }
+
+//        try {
+//            mangaName = args[0];
+//            for (int i = 1; i < args.length; i++) {
+//                mangaName = mangaName + " " + args[i];
+//            }
+//            System.out.println(mangaName);
+//        } catch (Exception e) {
+//        }
 
 //debug+ os
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -66,7 +77,7 @@ public class Main {
 
 
 //HTML variables
-        final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\"../../ressources/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\"../../ressources/logo.png\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\"../../ressources/logo.png\">\n</div>\n");
+        final String htmlHeader = ("<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n" + "<link rel=\"stylesheet\" href =\""+path+"/manga.css\"/>\n" + "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\"\n>" + "<link rel=\"icon\" href=\""+path+"\" type=\"image/x-icon\" />\n" + "<meta charset=\"UTF-8\">\n" + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + "<title>Manga Reader</title>\n" + "</head><body>\n" + "<div class=\"logo\">\n<img src =\""+path+"\">\n</div>\n");
 
         final String htmlEnd = ("</body>\n</html>\n");
 
@@ -283,8 +294,12 @@ public class Main {
         list.toArray(new String[0]);
     }
 
+
+
+
+
     //takes argiments like "-i" and returns a path
-    public String[] pathFinder(String[] args) {
+    public static String[] pathFinder(String[] args) {
         String path = null;
         String mangaName = null;
         //count of the arguments in
@@ -296,23 +311,27 @@ public class Main {
         if (args[0].equals("-i")) {
             path = "./ressources";
             argCount++;
+            System.out.println("manga for ipad");
         } else {
             path = "../../ressources";
         }
 
         //check for mangaName
         try {
-            mangaName = 
-            for (int i = argCount+1; i < args.length; i++) {
+            mangaName = args[argCount];
+            argCount++;
+            for (int i = argCount; i < args.length; i++) {
                 mangaName = mangaName + args[argCount];
             }
         } catch (Exception e) {
             System.out.println("no manga name");
         }
+        System.out.println(mangaName);
 
-
+        //adds informations to list
         arguments[0] = path;
         arguments[1] = mangaName;
+        System.out.println("\n\n\nlength: "+arguments.length);
 
 //       if one of the arguments is false, don't use it
         return arguments;
