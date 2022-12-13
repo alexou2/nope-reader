@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println(Arrays.toString(args));
         String mangaName = null;
-        String firstChapter;
+        String firstChapter = null;
         Scanner scan = new Scanner(System.in);
 
 
@@ -156,7 +156,7 @@ public class Main {
         String nextChapTop = null;
         String prevChapBottom = null;
         String nextChapBottom = null;
-        try {
+//        try {
 
 
 //lists chapter folders
@@ -228,12 +228,19 @@ public class Main {
 
                 File manga = new File("manga" + File.separator + mangaName + File.separator + chapterList.get(i - 1));
 
+//                for (File p  : manga.listFiles()) {
+//                    String image = p.getName();
+//
+//                    //sorting list
+//                    pageList.add(image);
+//                }
+
                 for (File p : Objects.requireNonNull(manga.listFiles())) {
                     String image = p.getName();
 
-                    //sorting list
                     pageList.add(image);
                 }
+
 
                 pageList = pageList.stream().filter((String s) -> s.endsWith(".jpg")).collect(Collectors.toList());
 
@@ -280,9 +287,12 @@ public class Main {
             System.out.println("\nThe first chapter is: \n"
                     + firstChapter);
 
-        } catch (Exception e) {
-        }
+//        } catch (Exception e) {
+//            System.out.println("\nerror creating chapters");
+//        }
     }
+
+
 
 
     //regex to sort chapters/pages
