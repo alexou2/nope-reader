@@ -29,4 +29,4 @@ and so on and so forth... (the names your files will certainly be different)
 
 If you want to, you can add `-i` in the command line to generate a page that runs on IOS. You will have to copy the `ressources` folder in your manga folder.
 
-If you encounter issues, feel free to reach out to me. 
+If you encounter issues, feel free to reach out to me by creating an issue. 
