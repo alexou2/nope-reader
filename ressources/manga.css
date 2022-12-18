@@ -20,6 +20,8 @@ h1 {
 
 img {
   display: block;
+  width: 80%;
+  max-width: 100%;
 }
 
 .logo img {
