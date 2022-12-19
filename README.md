@@ -1,5 +1,5 @@
 # nope-reader
-creates html files to view manga chapters
+creates html files to view manga chapters. Works both on IOS and on PC/ mac.
 
 How to use:
 
