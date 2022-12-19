@@ -2,5 +2,4 @@
 *.html
 *.js
 *.png
-manga2
-manga/*
+manga/*/*
