@@ -10,7 +10,7 @@ How to use:
 
 The result shoud look someting like this:
 
-`manga
+manga
 │   └── Deamon slayer
 │       ├── Chapter1
 │       │   ├── page1.jpg
@@ -18,7 +18,7 @@ The result shoud look someting like this:
 │       │   ├── page3.jpg
 │       │   ├── javascript.js
 │       │   ├── Chapter1.html
-│       │   ├── style.css`
+│       │   ├── style.css
 
 and so on and so forth... (the names your files will certainly be different)
 
