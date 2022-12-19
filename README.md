@@ -1,5 +1,5 @@
 # nope-reader
-creates html files to view manga chapters
+creates html files to view manga chapters. Works both on IOS and on PC/ mac.
 
 How to use:
 
@@ -10,15 +10,25 @@ How to use:
 
 The result shoud look someting like this:
 
-`manga
-│   └── Deamon slayer
-│       ├── Chapter1
-│       │   ├── page1.jpg
-│       │   ├── page2.jpg
-│       │   ├── page3.jpg
-│       │   ├── javascript.js
-│       │   ├── Chapter1.html
-│       │   ├── style.css`
+
+> manga
+>
+> │   └── Deamon slayer
+>
+> │       ├── Chapter1
+>
+> │       │   ├── page1.jpg
+>
+> │       │   ├── page2.jpg
+>
+> │       │   ├── page3.jpg
+>
+> │       │   ├── javascript.js
+>
+> │       │   ├── Chapter1.html
+>
+> │       │   ├── style.css
+
 
 and so on and so forth... (the names your files will certainly be different)
 
