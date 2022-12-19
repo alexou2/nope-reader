@@ -20,25 +20,16 @@ h1 {
 
 img {
   display: block;
-  width: 80%;
+  /* width: 75%; */
   max-width: 100%;
 }
 
 .logo img {
   display: block;
-  width: 25em;
+  width: 35%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
-}
-
-.btn-outline-warning {
-  width: 25%;
-}
-
-.top-buttons {
-  text-align: center;
-  width: 100%;
 }
 
 .btn {
@@ -47,3 +38,13 @@ img {
   height: 3em;
   text-align: center;
 }
+
+.btn-outline-warning {
+  width: 35%;
+}
+
+.top-buttons {
+  text-align: center;
+  width: 100%;
+}
+
