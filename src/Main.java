@@ -245,9 +245,15 @@ String path = "../../ressources";
             System.out.print("\nIts chapters are:\n");
             for (String s : chapterList) System.out.println(s);
 
-            firstChapter = ("file:///" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
+            firstChapter = ("file://" + System.getProperty("user.dir") + File.separator + "manga" + File.separator + mangaName + File.separator + chapterList.get(0) + ".html");
             firstChapter = firstChapter.replaceAll(" ", "%20");
-            System.out.println("\nThe first chapter is: \n" + firstChapter);
+
+                        // firstChapter = firstChapter.replaceAll(" ", "\\ ");
+
+
+            // System.out.println("\nThe first chapter is: \n" + firstChapter);
+
+            returnFirstChapter(firstChapter, mangaName);
 
         } catch (Exception e) {
             System.out.println("\n\n\nERROR CREATING CHAPTERS \n");
@@ -337,6 +343,19 @@ String path = "../../ressources";
 //       if one of the arguments is false, don't use it
         return arguments;
     }
+
+
+
+//writes a file to tell the path to the first chapter
+    public static void returnFirstChapter(String firstChapter, String mangaName)throws IOException{
+        BufferedWriter wr = new BufferedWriter(new FileWriter("firstChap.txt"));
+        wr.write(firstChapter);
+        wr.write("\n");
+        System.out.printf("the first chapter is: %s", mangaName);
+        wr.close();
+        
+    }
+
 
 
 }
