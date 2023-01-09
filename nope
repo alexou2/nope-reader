@@ -1,6 +1,0 @@
-#!/bin/bash
-cd /home/alexou/Documents/nope-reader/
-java src/Main.java $@
-#nautilus /home/alexou/Documents/nope-reader/manga/$@
-
-open ~/Documents/nope-reader/manga/$@
